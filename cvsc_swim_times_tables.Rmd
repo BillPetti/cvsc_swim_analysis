@@ -29,5 +29,5 @@ swim_results_all <- swim_results_all %>%
 
 names(swim_results_all) <- c("Swimmer", "Date", "Age Group", "Age", "Gender", "Stroke", "Distance", "Meet Type", "Swim Order", "Time", "Change", "Cumuative Change")
 
-DT::datatable(swim_results_all, filter = "top", options = list(pageLength = 20, columnDefs = list(list(className = 'dt-center', targets = 3:11))))
+DT::datatable(swim_results_all, filter = "top", options = list(pageLength = 20, columnDefs = list(list(className = 'dt-center', targets = 3:12))))
 ```
