@@ -1,0 +1,33 @@
+---
+title: "CVSC Swim Times"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+```
+
+```{r}
+source("https://raw.githubusercontent.com/BillPetti/R-Plotting-Resources/master/theme_bp_grey")
+
+source("https://raw.githubusercontent.com/BillPetti/R-Plotting-Resources/master/tableau_colorblind_palette")
+
+require(dplyr)
+require(tidyr)
+require(DT)
+
+swim_results_all <- read.csv("/Users/williampetti/cvsc_db/cvsc_swim_analysis/swim_results_all.csv")
+
+swim_results_all <- swim_results_all %>%
+  mutate(change = round(change, 2), 
+         cumulative_change = round(cumulative_change, 2),
+         AGE_GROUP = ifelse(AGE < 9, "8U", 
+                            ifelse(between(AGE, 9, 10), "9-10", 
+                                   ifelse(between(AGE, 11, 12), "11-12", 
+                                          ifelse(between(AGE, 13, 14), "13-14", "15-18"))))) %>%
+  select(NAME, START, AGE_GROUP, age_start_season, SEX, stroke_name, DISTANCE, TYPE, swim_order, SCORE, change, cumulative_change)
+
+names(swim_results_all) <- c("Swimmer", "Date", "Age Group", "Age", "Gender", "Stroke", "Distance", "Meet Type", "Swim Order", "Time", "Change", "Cumuative Change")
+
+DT::datatable(swim_results_all, filter = "top")
+```
