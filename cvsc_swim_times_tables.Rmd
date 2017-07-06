@@ -25,9 +25,9 @@ swim_results_all <- swim_results_all %>%
                             ifelse(between(AGE, 9, 10), "9-10", 
                                    ifelse(between(AGE, 11, 12), "11-12", 
                                           ifelse(between(AGE, 13, 14), "13-14", "15-18"))))) %>%
-  select(NAME, START, AGE_GROUP, age_start_season, SEX, stroke_name, DISTANCE, TYPE, swim_order, SCORE, change, cumulative_change)
+  select(NAME, START, YEAR, AGE_GROUP, age_start_season, SEX, stroke_name, DISTANCE, TYPE, swim_order, SCORE, change, cumulative_change)
 
-names(swim_results_all) <- c("Swimmer", "Date", "Age Group", "Age", "Gender", "Stroke", "Distance", "Meet Type", "Swim Order", "Time", "Change", "Cumuative Change")
+names(swim_results_all) <- c("Swimmer", "Date", "Year", "Age Group", "Age", "Gender", "Stroke", "Distance", "Meet Type", "Swim Order", "Time", "Change", "Cumuative Change")
 
 DT::datatable(swim_results_all, filter = "top", options = list(pageLength = 20, columnDefs = list(list(className = 'dt-center', targets = 3:12))))
 ```
