@@ -1,0 +1,24 @@
+---
+title: "CVSC Meet Matchups"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+```
+
+```{r}
+source("https://raw.githubusercontent.com/BillPetti/R-Plotting-Resources/master/theme_bp_grey")
+
+source("https://raw.githubusercontent.com/BillPetti/R-Plotting-Resources/master/tableau_colorblind_palette")
+
+require(dplyr)
+require(tidyr)
+require(DT)
+
+meet_matchups <- read.csv("/Users/williampetti/cvsc_db/cvsc_swim_analysis/meet_matchups.csv", check.names = FALSE)
+
+names(meet_matchups) <- c("Age Group", "Event", "Best Time (Seconds)", "Age", "Club", "Name", "Time Rank", "Est. Place", "Points", "Event Age Group", "Event Order")
+
+DT::datatable(meet_matchups, filter = "top", options = list(pageLength = 100, columnDefs = list(list(className = 'dt-center', targets = c(2:5, 7:11)))))
+```
