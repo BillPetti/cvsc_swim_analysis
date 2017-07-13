@@ -24,7 +24,8 @@ names(meet_matchups) <- c("Age Group", "Event", "Best Time (Seconds)", "Age", "C
 meet_matchups %<>% 
   select(`Event Age Group`, `Age Group`:`Time Rank`) %>%
   select(-Age) %>%
-  select(`Event Age Group`:`Event`, Name, Club, `Time Rank`, `Best Time (Seconds)`)
+  select(`Event Age Group`:`Event`, Name, Club, `Time Rank`, `Best Time (Seconds)`) %>% 
+  filter(`Time Rank` == 1)
   
 DT::datatable(meet_matchups, filter = "top", width = '100%', options = list(pageLength = 100, scrollX = T, autoWidth = TRUE, columnDefs = list(list(className = 'dt-center', targets = c(2:7)))))
 ```
