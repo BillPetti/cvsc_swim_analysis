@@ -22,10 +22,10 @@ meet_matchups <- read.csv("/Users/williampetti/cvsc_db/cvsc_swim_analysis/meet_m
 names(meet_matchups) <- c("Age Group", "Event", "Best Time (Seconds)", "Age", "Club", "Name", "Time Rank", "Est. Place", "Points", "Event Age Group", "Event Order")
 
 meet_matchups %<>% 
+  filter(`Time Rank` == 1) %>% 
   select(`Event Age Group`, `Age Group`:`Time Rank`) %>%
   select(-Age) %>%
-  select(`Event Age Group`:`Event`, Name, Club, `Time Rank`, `Best Time (Seconds)`) %>% 
-  filter(`Time Rank` == 1)
+  select(`Event Age Group`:`Event`, Name, Club, `Best Time (Seconds)`) 
   
-DT::datatable(meet_matchups, filter = "top", width = '100%', options = list(pageLength = 100, scrollX = T, autoWidth = TRUE, columnDefs = list(list(className = 'dt-center', targets = c(2:7)))))
+DT::datatable(meet_matchups, filter = "top", width = '100%', options = list(pageLength = 100, scrollX = T, autoWidth = TRUE, columnDefs = list(list(className = 'dt-center', targets = c(2:6)))))
 ```
