@@ -13,12 +13,15 @@ source("https://raw.githubusercontent.com/BillPetti/R-Plotting-Resources/master/
 source("https://raw.githubusercontent.com/BillPetti/R-Plotting-Resources/master/tableau_colorblind_palette")
 
 require(dplyr)
+require(magrittr)
 require(tidyr)
 require(DT)
 
 meet_matchups <- read.csv("/Users/williampetti/cvsc_db/cvsc_swim_analysis/meet_matchups.csv", check.names = FALSE)
 
 names(meet_matchups) <- c("Age Group", "Event", "Best Time (Seconds)", "Age", "Club", "Name", "Time Rank", "Est. Place", "Points", "Event Age Group", "Event Order")
+
+meet_matchups %<>% select(`Event Age Group`, `Age Group`:`Time Rank`)
 
 DT::datatable(meet_matchups, filter = "top", options = list(pageLength = 100, columnDefs = list(list(className = 'dt-center', targets = c(2:5, 7:11)))))
 ```
