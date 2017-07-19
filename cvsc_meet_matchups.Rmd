@@ -28,5 +28,6 @@ meet_matchups %<>%
   select(-Age) %>%
   select(`Event Age Group`:`Event`, Name, Club, `Best Time (Seconds)`) 
   
-DT::datatable(meet_matchups, filter = "top", width = '100%', options = list(pageLength = 100, scrollX = T, autoWidth = TRUE, columnDefs = list(list(className = 'dt-center', targets = c(2:6)))))
+DT::datatable(meet_matchups, filter = "top", width = '100%', 
+              options = list(lengthMenu = list(c(20, 50, 100, -1), c('20', '50', '100', 'All')), pageLength = -1, scrollX = T, autoWidth = TRUE, columnDefs = list(list(className = 'dt-center', targets = c(2:6)))))
 ```
